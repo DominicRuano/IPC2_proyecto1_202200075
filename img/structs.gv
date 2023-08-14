@@ -1,0 +1,12 @@
+digraph structs {
+	node [fontname=Helvetica shape=record]
+	0 [label=5]
+	1 [label=6]
+	0 -> 1
+	1 [label=6]
+	2 [label=7]
+	1 -> 2
+	2 [label=7]
+	3 [label=8]
+	2 -> 3
+}

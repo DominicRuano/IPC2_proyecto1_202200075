@@ -1,3 +1,5 @@
+from graph import Graph
+
 class Nodo():
     def __init__(self,id, dato):
         self.id = id
@@ -22,6 +24,7 @@ class Nodo():
     def setSiguiente(self, siguiente):
         self.siguiente = siguiente
 
+
 class ListaSimple():
     id = 0
     def __init__(self):
@@ -31,6 +34,7 @@ class ListaSimple():
 
     def estaVacia(self):
         return self.nodoInicio == None
+        #return self.size == 0
 
     def agregarFinal(self, dato):
         nuevo = Nodo(self.id, dato)
@@ -42,3 +46,17 @@ class ListaSimple():
             self.nodoFinal.setSiguiente(nuevo)
             self.nodoFinal = nuevo
         self.size += 1
+
+    def imprimir(self):
+        tmp = self.nodoInicio
+        while tmp != None:
+            print(tmp.getDato())
+            tmp = tmp.getSiguiente()
+
+    def graficar(self):
+        graph = Graph()
+        tmp = self.nodoInicio
+        while tmp != None:
+            graph.add(tmp, tmp.getSiguiente())
+            tmp = tmp.getSiguiente()
+        graph.generar()
