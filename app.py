@@ -1,11 +1,11 @@
 from ListaSimple import ListaSimple
+from XML import leerXML
 
-ls = ListaSimple()
+obj = leerXML("entrada1.xml")
+obj.getSenal()
 
-ls.agregarFinal(5)
-ls.agregarFinal(6)
-ls.agregarFinal(7)
-ls.agregarFinal(8)
-
-ls.imprimir()
-ls.graficar()
+valor = obj.listaEncabezados.getInicio()
+print("8787887878")
+while valor:
+    print(valor.getDato().getNombre())
+    valor = valor.getSiguiente()
