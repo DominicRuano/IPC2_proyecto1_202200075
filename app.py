@@ -6,9 +6,9 @@ obj.getSenal()
 
 
 valor = obj.listaDatos.getInicio()
-print("8787887878")
+print("-----------------")
 while valor:
-    valor.getDato().print()
+    #valor.getDato().print()
     #print(valor.getDato().getTmax())
     #print(valor.getDato().getAmax())
     valor = valor.getSiguiente()

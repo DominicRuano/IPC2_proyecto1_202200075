@@ -36,29 +36,28 @@ class leerXML:
         valor1 = 1
         graph = Graph()
         tmp = self.listaEncabezados.nodoInicio
+        primerNodo = self.listaDatos.nodoInicio
+        segundoNodo = primerNodo.getSiguiente()
+
         while tmp:
             for a in range(self.listaEncabezados.size):
                 if a == valor:
                     graph.addEncabezado(tmp)
-                    
-                    primerNodo = self.listaDatos.nodoInicio
                     primerNodoC = primerNodo
-                    segundoNodo = self.listaDatos.nodoInicio.getSiguiente()
-                    segundoNodoC = segundoNodo 
-                    for b in range(1, int(tmp.getDato().getAmax()) + 1):
-                        while segundoNodo and primerNodo.getDato().getAmplitud() == str(b) :
-                            print(primerNodo.getDato().getAmplitud() == str(b) and  segundoNodo.getDato().getAmplitud() == str(b))
-                            print("----")
-                            if primerNodo.getDato().getAmplitud() == str(b) and  segundoNodo.getDato().getAmplitud() == str(b) and primerNodo.getDato().getSenal() == segundoNodo.getDato().getSenal():
-                                graph.addNodo(primerNodo, segundoNodo,valor1, b)
-                                valor1 += 1
-                                #primerNodo = primerNodo.getSiguiente()
-                                primerNodo = segundoNodo
-                                segundoNodo = segundoNodo.getSiguiente()
-                            else:
-                                segundoNodo = segundoNodo.getSiguiente()
-                        primerNodo = primerNodoC.getSiguiente()
-                        segundoNodo = segundoNodoC.getSiguiente()
+                    segundoNodoC = segundoNodo
+                    for amplitud in range(1, int(tmp.getDato().getAmax()) + 1):
+                        for amplitud2 in range(1, int(self.listaDatos.size) + 1):
+                            if segundoNodoC:
+                                print("amplitud primernodo: {} | amplitud segundo nodo: {} | booleano: {}".format(primerNodoC.getDato().getAmplitud(), segundoNodoC.getDato().getAmplitud(),primerNodoC.getDato().getAmplitud() == segundoNodoC.getDato().getAmplitud()))
+                                if primerNodoC.getDato().getAmplitud() == segundoNodoC.getDato().getAmplitud():
+                                    graph.addNodo(primerNodoC, segundoNodoC, valor1)
+                                    valor1 += 1
+                                    print("amplitud: ", amplitud)
+                                    primerNodoC = segundoNodoC
+                                    segundoNodoC = segundoNodoC.getSiguiente()
+                                else:
+                                    segundoNodoC = segundoNodoC.getSiguiente()
+
                     graph.generar2(a)
                     return
                 tmp = tmp.getSiguiente()
