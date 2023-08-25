@@ -18,5 +18,5 @@ while valor:
 
 #obj.listaEncabezados.graficar()
 obj.graficar2(0)
-#obj.graficar2(1)
-#obj.graficar2(2)
+obj.graficar2(1)
+obj.graficar2(2)

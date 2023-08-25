@@ -20,7 +20,7 @@ class Graph():
         self.dot.edge(str(NombreSenal.getDato().getNombre()), "A= "+str(NombreSenal.getDato().getAmax()))
     
     def addNodo(self, nodoInicio, nodoSiguiente, random):
-        if(nodoSiguiente and nodoSiguiente.getDato().getSenal() == nodoInicio.getDato().getSenal()):
+        if(nodoSiguiente):
                     self.dot.node(str(random), str(nodoInicio.getDato().getDato()))
                     self.dot.node(str(random + 1), str(nodoSiguiente.getDato().getDato()))
                     self.dot.edge(str(random), str(random + 1))
