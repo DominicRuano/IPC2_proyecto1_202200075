@@ -89,6 +89,7 @@ while True:
     elif opcion == "7":
         os.system("cls")
         print("Saliendo...")
+        break
 
     else:
         os.system("cls")
