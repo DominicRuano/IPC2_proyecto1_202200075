@@ -81,8 +81,10 @@ while True:
 
     elif opcion == "6":
         os.system("cls")
-        print("Inicializar Sistema")
-        #inicializarSistema()
+        print("Inicializar Sistema:")
+        nombreArchivo = None
+        obj = None
+        print("Sistema inicializado con exito!")
 
     elif opcion == "7":
         os.system("cls")
