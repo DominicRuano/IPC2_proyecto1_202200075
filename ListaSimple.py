@@ -31,6 +31,9 @@ class ListaSimple():
         self.nodoInicio = None
         self.nodoFinal = None
         self.size = 0
+    
+    def getInicio(self):
+        return self.nodoInicio
 
     def estaVacia(self):
         return self.nodoInicio == None
@@ -56,7 +59,19 @@ class ListaSimple():
     def graficar(self):
         graph = Graph()
         tmp = self.nodoInicio
-        while tmp != None:
+        while tmp:
             graph.add(tmp, tmp.getSiguiente())
             tmp = tmp.getSiguiente()
         graph.generar()
+    
+    def graficar2(self, valor):
+        graph = Graph()
+        tmp = self.nodoInicio
+        while tmp:
+            for a in range(self.size):
+                if a == valor:
+                    graph.addEncabezado(tmp)
+                    graph.generar2(a)
+                    return
+                tmp = tmp.getSiguiente()
+
