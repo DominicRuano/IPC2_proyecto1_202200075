@@ -19,8 +19,8 @@ class Graph():
         self.dot.node("A= "+str(NombreSenal.getDato().getAmax()), "A= "+str(NombreSenal.getDato().getAmax()))
         self.dot.edge(str(NombreSenal.getDato().getNombre()), "A= "+str(NombreSenal.getDato().getAmax()))
     
-    def addNodo(self, nodoInicio, nodoSiguiente, random, amp):
-        if(nodoSiguiente.getDato().getSenal() == nodoInicio.getDato().getSenal() and nodoInicio.getDato().getAmplitud() == nodoSiguiente.getDato().getAmplitud()) and nodoInicio.getDato().getAmplitud() == str(amp) and nodoSiguiente.getDato().getAmplitud() == str(amp):
+    def addNodo(self, nodoInicio, nodoSiguiente, random):
+        if(nodoSiguiente):
                     self.dot.node(str(random), str(nodoInicio.getDato().getDato()))
                     self.dot.node(str(random + 1), str(nodoSiguiente.getDato().getDato()))
                     self.dot.edge(str(random), str(random + 1))

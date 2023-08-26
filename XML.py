@@ -11,22 +11,18 @@ class leerXML:
         self.listaDatos = ListaSimple()
     
     def getSenal(self) -> None:
-        #self.listaEncabezados = ListaSimple()
         for a in self.root.findall("senal"):
-            
             senal1 = a.get("nombre")
             Tmax =  a.get("t")
             Amax = a.get("A")
             tmpS = senal(senal1, Tmax, Amax)
             self.listaEncabezados.agregarFinal(tmpS)
-
             for e in a.findall("dato"):
                 tiempo = e.get("t")
                 amplitud = e.get("A")
                 dato2 = e.text 
                 tmpD = dato(tiempo,amplitud,dato2, senal1)
                 self.listaDatos.agregarFinal(tmpD)
-
         senguar = self.listaEncabezados.getInicio()
 
     def getLista(self):
@@ -36,29 +32,35 @@ class leerXML:
         valor1 = 1
         graph = Graph()
         tmp = self.listaEncabezados.nodoInicio
-        while tmp:
-            for a in range(self.listaEncabezados.size):
-                if a == valor:
-                    graph.addEncabezado(tmp)
-                    
-                    primerNodo = self.listaDatos.nodoInicio
-                    primerNodoC = primerNodo
-                    segundoNodo = self.listaDatos.nodoInicio.getSiguiente()
-                    segundoNodoC = segundoNodo 
-                    for b in range(1, int(tmp.getDato().getAmax()) + 1):
-                        while segundoNodo and primerNodo.getDato().getAmplitud() == str(b) :
-                            print(primerNodo.getDato().getAmplitud() == str(b) and  segundoNodo.getDato().getAmplitud() == str(b))
-                            print("----")
-                            if primerNodo.getDato().getAmplitud() == str(b) and  segundoNodo.getDato().getAmplitud() == str(b) and primerNodo.getDato().getSenal() == segundoNodo.getDato().getSenal():
-                                graph.addNodo(primerNodo, segundoNodo,valor1, b)
-                                valor1 += 1
-                                #primerNodo = primerNodo.getSiguiente()
-                                primerNodo = segundoNodo
-                                segundoNodo = segundoNodo.getSiguiente()
-                            else:
-                                segundoNodo = segundoNodo.getSiguiente()
-                        primerNodo = primerNodoC.getSiguiente()
-                        segundoNodo = segundoNodoC.getSiguiente()
-                    graph.generar2(a)
-                    return
-                tmp = tmp.getSiguiente()
+        primerNodo = self.listaDatos.nodoInicio
+        segundoNodo = primerNodo.getSiguiente()
+
+        for a in range(self.listaEncabezados.size):
+            if a == valor:
+                graph.addEncabezado(tmp)
+                primerNodoC = primerNodo
+                segundoNodoC = segundoNodo
+                for amplitud in range(1, int(tmp.getDato().getAmax()) + 1):
+                    for amplitud2 in range(1, int(self.listaDatos.size) + 1):
+                            if segundoNodoC:
+                                if tmp.getDato().getNombre() == primerNodoC.getDato().getSenal():
+                                    if primerNodoC.getDato().getSenal() == segundoNodoC.getDato().getSenal():
+                                        if primerNodoC.getDato().getAmplitud() == segundoNodoC.getDato().getAmplitud():
+                                            graph.addNodo(primerNodoC, segundoNodoC, valor1)
+                                            valor1 += 1
+                                            primerNodoC = segundoNodoC
+                                            segundoNodoC = segundoNodoC.getSiguiente()
+                                        else:
+                                            segundoNodoC = segundoNodoC.getSiguiente()
+                                else:
+                                    primerNodoC = primerNodo.getSiguiente()
+                                    segundoNodoC = primerNodoC.getSiguiente()
+                                    primerNodo = primerNodo.getSiguiente()
+                                    valor1 += 2
+                    primerNodoC = primerNodo.getSiguiente()
+                    segundoNodoC = primerNodoC.getSiguiente()
+                    primerNodo = primerNodo.getSiguiente()
+                    valor1 += 2
+                graph.generar2(a)
+                return
+            tmp = tmp.getSiguiente()
