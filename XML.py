@@ -11,22 +11,18 @@ class leerXML:
         self.listaDatos = ListaSimple()
     
     def getSenal(self) -> None:
-        #self.listaEncabezados = ListaSimple()
         for a in self.root.findall("senal"):
-            
             senal1 = a.get("nombre")
             Tmax =  a.get("t")
             Amax = a.get("A")
             tmpS = senal(senal1, Tmax, Amax)
             self.listaEncabezados.agregarFinal(tmpS)
-
             for e in a.findall("dato"):
                 tiempo = e.get("t")
                 amplitud = e.get("A")
                 dato2 = e.text 
                 tmpD = dato(tiempo,amplitud,dato2, senal1)
                 self.listaDatos.agregarFinal(tmpD)
-
         senguar = self.listaEncabezados.getInicio()
 
     def getLista(self):
@@ -52,7 +48,6 @@ class leerXML:
                                         if primerNodoC.getDato().getAmplitud() == segundoNodoC.getDato().getAmplitud():
                                             graph.addNodo(primerNodoC, segundoNodoC, valor1)
                                             valor1 += 1
-                                            print("amplitud: ", amplitud)
                                             primerNodoC = segundoNodoC
                                             segundoNodoC = segundoNodoC.getSiguiente()
                                         else:

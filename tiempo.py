@@ -7,7 +7,6 @@ class tiempo:
         self.amplitud = amplitud
         self.amplitudes = ListaSimple()
         self.listaAmplitudes()
-        self.imprimir()
     
     def getTiempo(self):
         return self.tiempo
@@ -19,11 +18,4 @@ class tiempo:
         for a in range(1, int(self.amplitud) + 1):
             tmp = amplitud(a)
             self.amplitudes.agregarFinal(tmp)
-    
-    def imprimir(self):
-        print("amplitudes: {} ".format(self.getTiempo()))
-        objAmp = self.amplitudes.getInicio()
-        while objAmp:
-            print(objAmp.getDato().getAmplitud())
-            objAmp = objAmp.getSiguiente()
 
