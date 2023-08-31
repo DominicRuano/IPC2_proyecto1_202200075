@@ -72,3 +72,41 @@ class leerXML:
                 graph.generar2(a)
                 return
             tmp = tmp.getSiguiente()
+
+
+    def graficar3(self, valor):
+        valor1 = 1
+        graph = Graph()
+        tmp = self.listaEncabezados.nodoInicio
+        primerNodo = self.listaBinaria.nodoInicio
+        segundoNodo = primerNodo.getSiguiente()
+
+        for a in range(self.listaEncabezados.size):
+            if a == valor:
+                graph.addEncabezado(tmp)
+                primerNodoC = primerNodo
+                segundoNodoC = segundoNodo
+                for amplitud in range(1, int(tmp.getDato().getAmax()) + 1):
+                    for amplitud2 in range(1, int(self.listaBinaria.size) + 1):
+                            if segundoNodoC:
+                                if tmp.getDato().getNombre() == primerNodoC.getDato().getSenal():
+                                    if primerNodoC.getDato().getSenal() == segundoNodoC.getDato().getSenal():
+                                        if primerNodoC.getDato().getAmplitud() == segundoNodoC.getDato().getAmplitud():
+                                            graph.addNodo(primerNodoC, segundoNodoC, valor1)
+                                            valor1 += 1
+                                            primerNodoC = segundoNodoC
+                                            segundoNodoC = segundoNodoC.getSiguiente()
+                                        else:
+                                            segundoNodoC = segundoNodoC.getSiguiente()
+                                else:
+                                    primerNodoC = primerNodo.getSiguiente()
+                                    segundoNodoC = primerNodoC.getSiguiente()
+                                    primerNodo = primerNodo.getSiguiente()
+                                    valor1 += 2
+                    primerNodoC = primerNodo.getSiguiente()
+                    segundoNodoC = primerNodoC.getSiguiente()
+                    primerNodo = primerNodo.getSiguiente()
+                    valor1 += 2
+                graph.generar2("{} binario".format(a))
+                return
+            tmp = tmp.getSiguiente()

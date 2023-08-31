@@ -38,12 +38,16 @@ while True:
 
     elif opcion == "2":
         os.system("cls")
-        print("Procesar Archivo")
+        print("Procesar Archivo:")
         if nombreArchivo:
-            obj = leerXML(nombreArchivo)
-            print("calculando la matriz binaria...")
-            print("calculando la suma de tuplas...")
-            obj.getSenal()
+            try:
+                obj = leerXML(nombreArchivo)
+                print("calculando la matriz binaria...")
+                print("calculando la suma de tuplas...")
+                obj.getSenal()
+            except:
+                print("Error al cargar el archivo, por favor cargue un archivo valido")
+
         else:
             print("No se ha cargado un archivo, por favor cargue un archivo primero")
 
@@ -76,6 +80,7 @@ while True:
                 tmp = tmp.getSiguiente()
             opcion = input("Ingrese la senal de la cual desea generar la grafica: ")
             obj.graficar2(int(opcion)-1)
+            obj.graficar3(int(opcion)-1)
         else:
             print("No se ha cargado un archivo, por favor cargue un archivo primero")
 
