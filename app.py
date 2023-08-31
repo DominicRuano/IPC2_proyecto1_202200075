@@ -88,6 +88,12 @@ while True:
 
     elif opcion == "7":
         os.system("cls")
+        temp = obj.listaBinaria.getInicio()
+
+        while temp:
+            print(temp.getDato().getDato())
+            temp = temp.getSiguiente()
+        
         print("Saliendo...")
         break
 

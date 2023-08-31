@@ -9,6 +9,7 @@ class leerXML:
         self.root = ET.parse(path).getroot()
         self.listaEncabezados = ListaSimple()
         self.listaDatos = ListaSimple()
+        self.listaBinaria = ListaSimple()
     
     def getSenal(self) -> None:
         for a in self.root.findall("senal"):
@@ -23,6 +24,13 @@ class leerXML:
                 dato2 = e.text 
                 tmpD = dato(tiempo,amplitud,dato2, senal1)
                 self.listaDatos.agregarFinal(tmpD)
+                if int(dato2) > 0:
+                    tmpB = dato(tiempo,amplitud,"1", senal1)
+                    self.listaBinaria.agregarFinal(tmpB)
+                else:
+                    tmpB = dato(tiempo,amplitud,"0", senal1)
+                    self.listaBinaria.agregarFinal(tmpB)
+
         senguar = self.listaEncabezados.getInicio()
 
     def getLista(self):
