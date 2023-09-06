@@ -3,7 +3,7 @@ import os
 
 def cargarArchivo() -> str:
     print("Opcion cargar archivos:")
-    nombre = input("Ingrese el nombre del archivo (sin .xml): ") + ".xml"
+    nombre = input("Ingrese el nombre/path del archivo (sin .xml): ") + ".xml"
 
     if input("¿seguro que el nombre {} es correcto? (s/n): ".format(nombre)) == "s":
         return nombre
@@ -55,10 +55,9 @@ while True:
         os.system("cls")
         if obj:
             print("Escribir Archivo Salida")
-            obj.escribirArchivoSalida()
+            obj.generarArchivo()
         else:
             print("No se ha cargado un archivo, por favor cargue un archivo primero")
-        #escribirArchivoSalida()
 
     elif opcion == "4":
         os.system("cls")

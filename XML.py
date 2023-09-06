@@ -42,7 +42,6 @@ class leerXML:
         tmp = self.listaEncabezados.nodoInicio
         primerNodo = self.listaDatos.nodoInicio
         segundoNodo = primerNodo.getSiguiente()
-
         for a in range(self.listaEncabezados.size):
             if a == valor:
                 graph.addEncabezado(tmp)
@@ -73,14 +72,12 @@ class leerXML:
                 return
             tmp = tmp.getSiguiente()
 
-
     def graficar3(self, valor):
         valor1 = 1
         graph = Graph()
         tmp = self.listaEncabezados.nodoInicio
         primerNodo = self.listaBinaria.nodoInicio
         segundoNodo = primerNodo.getSiguiente()
-
         for a in range(self.listaEncabezados.size):
             if a == valor:
                 graph.addEncabezado(tmp)
@@ -110,3 +107,10 @@ class leerXML:
                 graph.generar2("{} binario".format(a))
                 return
             tmp = tmp.getSiguiente()
+
+    def generarArchivo(self):
+        with open("salida.xml", "w") as f:
+            f.write("<?xml version=\"1.0\"?>\n")
+            f.write("<Senalesreducidas>\n")
+            f.write("\t<senal nombre=\"{}\" t=\"{}\" A=\"{}\">\n".format(self.listaEncabezados.nodoInicio.getDato().getNombre(), self.listaEncabezados.nodoInicio.getDato().getTmax(), self.listaEncabezados.nodoInicio.getDato().getAmax()))
+            f.write("</Senalesreducidas>\n")
