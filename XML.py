@@ -23,13 +23,16 @@ class leerXML:
                 amplitud = e.get("A")
                 dato2 = e.text 
                 tmpD = dato(tiempo,amplitud,dato2, senal1)
-                self.listaDatos.agregarFinal(tmpD)
+                if 0 < int(tiempo) <= 3600 and 0 < int(amplitud) <= 130:
+                    self.listaDatos.agregarFinal(tmpD)
                 if int(dato2) > 0:
                     tmpB = dato(tiempo,amplitud,"1", senal1)
-                    self.listaBinaria.agregarFinal(tmpB)
+                    if 0 < int(tiempo) <= 3600 and 0 < int(amplitud) <= 130:
+                        self.listaBinaria.agregarFinal(tmpB)
                 else:
                     tmpB = dato(tiempo,amplitud,"0", senal1)
-                    self.listaBinaria.agregarFinal(tmpB)
+                    if 0 < int(tiempo) <= 3600 and 0 < int(amplitud) <= 130:
+                        self.listaBinaria.agregarFinal(tmpB)
 
         senguar = self.listaEncabezados.getInicio()
 
@@ -111,6 +114,17 @@ class leerXML:
     def generarArchivo(self):
         with open("salida.xml", "w") as f:
             f.write("<?xml version=\"1.0\"?>\n")
-            f.write("<Senalesreducidas>\n")
-            f.write("\t<senal nombre=\"{}\" t=\"{}\" A=\"{}\">\n".format(self.listaEncabezados.nodoInicio.getDato().getNombre(), self.listaEncabezados.nodoInicio.getDato().getTmax(), self.listaEncabezados.nodoInicio.getDato().getAmax()))
-            f.write("</Senalesreducidas>\n")
+            f.write("<SenalesBinarios>\n")
+            tmp = self.listaEncabezados.nodoInicio
+            while tmp:
+                print(tmp.getDato().getNombre())
+                f.write("\t<senal nombre=\"{}\" t=\"{}\" A=\"{}\">\n".format(tmp.getDato().getNombre(), tmp.getDato().getTmax(), tmp.getDato().getAmax()))
+                tmp2 = self.listaBinaria.nodoInicio
+                while tmp2:
+                    print(tmp2.getDato().getSenal())
+                    if tmp.getDato().getNombre() == tmp2.getDato().getSenal():
+                        f.write("\t\t<dato t=\"{}\" A=\"{}\">{}</dato>\n".format(tmp2.getDato().getTiempo(), tmp2.getDato().getAmplitud(), tmp2.getDato().getDato()))
+                    tmp2 = tmp2.getSiguiente()
+                f.write("\t</senal>\n")
+                tmp = tmp.getSiguiente()
+            f.write("</SenalesBinarios>\n")
