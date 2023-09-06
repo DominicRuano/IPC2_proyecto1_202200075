@@ -26,10 +26,10 @@ class Graph():
                     self.dot.edge(str(random), str(random + 1))
 
     def generar(self):
-        self.dot.render(outfile='img/structs.png').replace('\\', '/')
-        'img/structs.png' 
+        self.dot.render(outfile='img/structs.svg').replace('\\', '/')
+        'img/structs.svg' 
     
     def generar2(self,a):
-        nombre = "img/structs{}.png".format(a)
+        nombre = "img/structs{}.svg".format(a)
         self.dot.render(outfile=nombre).replace('\\', '/')
-        'img/structs.png' 
+        'img/structs.svg' 

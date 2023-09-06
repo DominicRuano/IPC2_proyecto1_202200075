@@ -3,7 +3,7 @@ import os
 
 def cargarArchivo() -> str:
     print("Opcion cargar archivos:")
-    nombre = input("Ingrese el nombre del archivo (sin .xml): ") + ".xml"
+    nombre = input("Ingrese el nombre/path del archivo (sin .xml): ") + ".xml"
 
     if input("¿seguro que el nombre {} es correcto? (s/n): ".format(nombre)) == "s":
         return nombre
@@ -38,12 +38,16 @@ while True:
 
     elif opcion == "2":
         os.system("cls")
-        print("Procesar Archivo")
+        print("Procesar Archivo:")
         if nombreArchivo:
-            obj = leerXML(nombreArchivo)
-            print("calculando la matriz binaria...")
-            print("calculando la suma de tuplas...")
-            obj.getSenal()
+            try:
+                obj = leerXML(nombreArchivo)
+                print("calculando la matriz binaria...")
+                print("calculando la suma de tuplas...")
+                obj.getSenal()
+            except:
+                print("Error al cargar el archivo, por favor cargue un archivo valido")
+
         else:
             print("No se ha cargado un archivo, por favor cargue un archivo primero")
 
@@ -51,10 +55,9 @@ while True:
         os.system("cls")
         if obj:
             print("Escribir Archivo Salida")
-            obj.escribirArchivoSalida()
+            obj.generarArchivo()
         else:
             print("No se ha cargado un archivo, por favor cargue un archivo primero")
-        #escribirArchivoSalida()
 
     elif opcion == "4":
         os.system("cls")
@@ -76,6 +79,7 @@ while True:
                 tmp = tmp.getSiguiente()
             opcion = input("Ingrese la senal de la cual desea generar la grafica: ")
             obj.graficar2(int(opcion)-1)
+            obj.graficar3(int(opcion)-1)
         else:
             print("No se ha cargado un archivo, por favor cargue un archivo primero")
 
